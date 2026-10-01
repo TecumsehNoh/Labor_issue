@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>노무법인 이언 — 상담·실태조사</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1D3A4A;
+    --brand:#336F8D;
+    --teal:#3DBFB1;
+    --paper:#F3F6F7;
+    --card:#FFFFFF;
+    --seal:#336F8D;
+    --brass:#2E8E83;
+    --slate:#5A7480;
+    --line: rgba(29,58,74,0.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{ background:var(--paper); color:var(--ink); font-family:'Pretendard', sans-serif; line-height:1.65; }
+  h1,h2,h3,.serif{ font-family:'Noto Serif KR', serif; }
+  .label{ font-size:12px; letter-spacing:0.18em; font-weight:700; color:var(--brass); text-transform:uppercase; }
+  .wrap{ max-width:920px; margin:0 auto; padding:0 24px; }
+
+  header{ border-bottom:1px solid var(--line); padding:14px 24px; position:sticky; top:0; background:#FFFFFF; z-index:50; }
+  .nav-row{ max-width:920px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; }
+  .brand{ display:flex; align-items:baseline; gap:10px; cursor:pointer; background:none; border:none; }
+  .brand .mark{ width:30px; height:30px; border:2px solid var(--ink); border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Noto Serif KR'; font-weight:900; font-size:13px; color:var(--ink);}
+  .brand .name{ font-family:'Noto Serif KR'; font-weight:700; font-size:16px; color:var(--ink);}
+  .back-link{
+    font-size:13px; font-weight:700; color:var(--slate); background:none; border:none; cursor:pointer;
+    display:flex; align-items:center; gap:6px;
+  }
+  .back-link:hover{ color:var(--ink); }
+
+  /* ===== HOME ===== */
+  .home-hero{ padding:80px 24px 50px; text-align:center; }
+  .home-hero h1{ font-size:36px; font-weight:900; line-height:1.4; margin:20px 0 18px; }
+  .home-hero p{ font-size:16px; color:var(--slate); max-width:54ch; margin:0 auto; }
+
+  .issue-grid{ padding:10px 24px 100px; }
+  .issue-grid .wrap{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  .issue-card{
+    background:var(--card); border:1px solid var(--ink); padding:36px 32px;
+    text-align:left; cursor:pointer; transition:transform .15s ease;
+    display:flex; flex-direction:column; gap:14px;
+  }
+  .issue-card:hover{ transform:translateY(-4px); }
+  .issue-card .tag{ font-size:11px; letter-spacing:0.12em; color:var(--brass); font-weight:700; text-transform:uppercase; }
+  .issue-card h3{ font-size:21px; font-weight:700; line-height:1.4; }
+  .issue-card p{ font-size:13.5px; color:var(--slate); flex:1; }
+  .issue-card .go{ font-size:14px; font-weight:700; color:var(--seal); }
+
+  /* ===== Shared sub-page bits ===== */
+  .hero{ padding:60px 24px 46px; }
+  .hero .wrap{ text-align:center; }
+  .hero h1{ font-size:34px; font-weight:900; line-height:1.42; margin:18px 0 18px; }
+  .hero h1 .em{ color:var(--seal); }
+  .hero p.lead{ font-size:16px; color:var(--slate); max-width:54ch; margin:0 auto; }
+
+  .examples{ padding:8px 24px 50px; }
+  .examples .wrap{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
+  .examples span{ font-size:13px; border:1px solid var(--line); background:var(--card); padding:8px 16px; border-radius:999px; }
+
+  .eligibility{ padding:10px 24px 60px; }
+  .elig-box{ max-width:820px; margin:0 auto; background:var(--card); border:1px solid var(--ink); padding:36px 40px; position:relative; }
+  .elig-box.check::before{
+    content:"자가진단 / CHECK"; position:absolute; top:-11px; left:32px;
+    background:var(--paper); padding:0 8px; font-size:11px; letter-spacing:0.16em; font-weight:700; color:var(--brass);
+  }
+  .elig-box h3{ font-size:18px; margin-bottom:8px; }
+  .elig-box .sub{ font-size:13px; color:var(--slate); margin-bottom:20px; }
+  .elig-list{ list-style:none; }
+  .elig-list li{ display:flex; gap:14px; padding:14px 0; border-top:1px solid var(--line); font-size:15px; }
+  .elig-list li:first-child{ border-top:none; }
+  .elig-list li .chk{
+    flex:none; width:22px; height:22px; border:2px solid var(--seal); border-radius:4px;
+    color:var(--seal); font-weight:900; font-size:14px; display:flex; align-items:center; justify-content:center;
+  }
+
+  .why{ padding:10px 24px 70px; }
+  .why .wrap{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .why-card{ border-top:3px solid var(--brass); padding-top:16px; }
+  .why-card .n{ font-family:'Noto Serif KR'; color:var(--brass); font-weight:700; font-size:13px; letter-spacing:0.1em; }
+  .why-card h4{ font-size:16px; margin:8px 0 8px; }
+  .why-card p{ font-size:13.5px; color:var(--slate); }
+
+  .urgency{ background:var(--ink); color:var(--paper); padding:44px 24px; text-align:center; }
+  .urgency .wrap{ max-width:680px; margin:0 auto; }
+  .urgency h3{ font-size:20px; margin-bottom:10px; }
+  .urgency p{ font-size:14px; color:rgba(244,240,230,0.75); }
+  .urgency b{ color:var(--teal); }
+
+  .form-section{ padding:70px 24px 100px; }
+  .form-section .wrap{ max-width:680px; }
+  .form-head{ text-align:center; margin-bottom:32px; }
+  .form-head h2{ font-size:26px; font-weight:900; margin:14px 0 10px; }
+  .form-head p{ color:var(--slate); font-size:14px; }
+
+  .form-frame-box{
+    border:1px solid var(--ink); background:var(--card); min-height:220px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px;
+    padding:56px 30px; text-align:center;
+  }
+  .form-frame-box p{ font-size:14px; color:var(--slate); max-width:40ch; }
+  .btn-primary{
+    display:inline-block; background:var(--ink); color:var(--paper); padding:16px 40px;
+    font-size:15px; font-weight:700; border-radius:2px; text-decoration:none;
+  }
+
+  footer{ border-top:1px solid var(--line); padding:26px; text-align:center; font-size:12px; color:var(--slate); }
+
+  .view{ display:none; }
+  .view.active{ display:block; }
+
+  @media(max-width:760px){
+    .home-hero h1{ font-size:26px; }
+    .issue-grid .wrap{ grid-template-columns:1fr; }
+    .hero h1{ font-size:24px; }
+    .why .wrap{ grid-template-columns:1fr; gap:28px; }
+    .elig-box{ padding:28px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-row">
+    <button class="brand" onclick="showView('home')">
+      <img src="data:image/png;base64,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" alt="노무법인 이언" style="height:28px; width:auto; display:block;">
+    </button>
+    <button class="back-link" id="backBtn" onclick="showView('home')" style="display:none;">← 처음으로</button>
+  </div>
+</header>
+
+<!-- ===================== HOME ===================== -->
+<div class="view active" id="view-home">
+  <section class="home-hero">
+    <div class="wrap">
+      <span class="label">노무법인 이언 · 상담 센터</span>
+      <h1>어떤 문제로 고민하고 계신가요?</h1>
+      <p>해당하는 이슈를 선택하시면, 자가진단과 상담·조사 신청 페이지로 이동합니다.</p>
+    </div>
+  </section>
+
+  <section class="issue-grid">
+    <div class="wrap">
+      <div class="issue-card" onclick="showView('career')">
+        <span class="tag">Case Intake</span>
+        <h3>정규직 전환 후 경력·호봉이<br>제대로 인정되지 않았어요</h3>
+        <p>무기계약직·공무직 전환 시점에 이전 경력이 누락되거나 낮게 산정된 경우, 소급 청구가 가능할 수 있습니다.</p>
+        <span class="go">자세히 보기 →</span>
+      </div>
+      <div class="issue-card" onclick="showView('worker')">
+        <span class="tag">Worker Status Survey</span>
+        <h3>지자체 사업에 참여 중인데<br>퇴직금을 받은 적이 없어요</h3>
+        <p>위탁·용역·프리랜서 형태라도 실질적으로 근로자성이 인정되면 퇴직금을 청구할 수 있습니다.</p>
+        <span class="go">자세히 보기 →</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    노무법인 이언 · 서울 영등포구 선유로27, 215호 · 070-8823-1398
+  </footer>
+</div>
+
+<!-- ===================== CAREER DISCRIMINATION ===================== -->
+<div class="view" id="view-career">
+  <section class="hero">
+    <div class="wrap">
+      <span class="label">CASE INTAKE — 상담 접수</span>
+      <h1>정규직 전환 이후,<br><span class="em">호봉·경력이 제대로 인정됐습니까?</span></h1>
+      <p class="lead">무기계약직·공무직 전환 시점에 경력이 누락되거나 낮게 산정된 경우, 소급 청구가 가능할 수 있습니다. 지금 확인해보세요.</p>
+    </div>
+  </section>
+
+  <section class="eligibility">
+    <div class="elig-box check">
+      <h3 class="serif">이런 경우에 해당하시나요?</h3>
+      <ul class="elig-list">
+        <li><span class="chk">✓</span><span>기간제·비정규직으로 근무하다 정규직(무기계약직, 공무직 등)으로 전환되었다</span></li>
+        <li><span class="chk">✓</span><span>전환 당시 이전 근무 경력이 호봉이나 승급에 온전히 반영되지 않았다</span></li>
+        <li><span class="chk">✓</span><span>같은 업무를 하는 기존 정규직과 호봉·수당에서 차이가 있다</span></li>
+        <li><span class="chk">✓</span><span>노조나 동료들 사이에서도 비슷한 사례가 있다는 이야기를 들은 적 있다</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="why">
+    <div class="wrap">
+      <div class="why-card"><div class="n">01</div><h4>집단 사건일수록 유리</h4><p>같은 전환 시기, 같은 직군의 동료들과 함께 진행하면 입증도 수월하고 진행도 빨라집니다.</p></div>
+      <div class="why-card"><div class="n">02</div><h4>시효는 계속 줄어듭니다</h4><p>임금채권은 3년 소멸시효가 적용됩니다. 청구 가능한 과거분은 시간이 지날수록 줄어듭니다.</p></div>
+      <div class="why-card"><div class="n">03</div><h4>서류 한 장으로 시작</h4><p>전환 당시 발령장이나 호봉표만 있어도 1차 검토가 가능합니다. 지금 서류가 없어도 상담은 가능합니다.</p></div>
+    </div>
+  </section>
+
+  <section class="urgency">
+    <div class="wrap">
+      <h3 class="serif">전환 시점이 오래될수록<br><b>청구 가능한 금액은 줄어듭니다.</b></h3>
+      <p>2021년 전후 전환자의 경우, 매달 시효가 도과되는 구간이 늘어나고 있습니다. 지금 확인하는 것이 가장 유리합니다.</p>
+    </div>
+  </section>
+
+  <section class="form-section">
+    <div class="wrap">
+      <div class="form-head">
+        <span class="label">FREE CONSULTATION</span>
+        <h2 class="serif">무료 상담 신청</h2>
+        <p>아래 양식을 작성해 주시면 검토 후 개별 연락드립니다. 신청 내용은 상담 목적으로만 사용됩니다.</p>
+      </div>
+      <div class="form-frame-box">
+        <p>아래 버튼을 누르면 상담 신청 양식이 새 창으로 열립니다.<br>작성해 주신 내용은 검토 후 개별 연락드립니다.</p>
+        <a class="btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSfuVb3Q8klGTISEUu4LG0P7Ijs90m1rCUMlJ_2uRep7ne3Edg/viewform" target="_blank" rel="noopener">상담 신청 양식 작성하기 ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    노무법인 이언 · 서울 영등포구 선유로27, 215호 · 070-8823-1398 — 신청 내용은 상담 목적 외 다른 용도로 사용되지 않습니다.
+  </footer>
+</div>
+
+<!-- ===================== WORKER STATUS SURVEY ===================== -->
+<div class="view" id="view-worker">
+  <section class="hero">
+    <div class="wrap">
+      <span class="label">WORKER STATUS SURVEY — 실태조사</span>
+      <h1>지자체 사업에 참여하고 계신다면,<br><span class="em">퇴직금을 못 받고 계신 건 아닌지 확인해보세요.</span></h1>
+      <p class="lead">위탁·용역·프리랜서 형태로 지자체 사업에 참여해 온 경우에도, 실질적으로 근로자성이 인정되면 퇴직금을 청구할 수 있습니다.</p>
+    </div>
+  </section>
+
+  <section class="examples">
+    <div class="wrap">
+      <span>노인맞춤돌봄서비스</span><span>방문건강관리사업</span><span>산모·신생아 건강관리사</span>
+      <span>공공산후조리</span><span>노인일자리사업</span><span>아이돌봄서비스</span><span>기타 위탁·용역 사업</span>
+    </div>
+  </section>
+
+  <section class="eligibility">
+    <div class="elig-box check">
+      <h3 class="serif">이런 경우 근로자성이 인정될 수 있습니다</h3>
+      <p class="sub">아래 항목 중 해당하는 것이 많을수록 근로자성이 인정될 가능성이 높습니다.</p>
+      <ul class="elig-list">
+        <li><span class="chk">✓</span><span>업무 내용과 방법을 지자체(또는 위탁 사업단)가 구체적으로 정해주고 지시한다</span></li>
+        <li><span class="chk">✓</span><span>근무 시간과 장소가 사실상 정해져 있고, 출퇴근을 관리·보고한다</span></li>
+        <li><span class="chk">✓</span><span>다른 일을 겸하는 것이 제한되어 있다</span></li>
+        <li><span class="chk">✓</span><span>개인 사업자 등록 없이 개인 자격으로 매년 계약을 갱신해왔다</span></li>
+        <li><span class="chk">✓</span><span>급여에서 3.3% 원천징수만 하고, 4대보험(특히 고용·산재보험)에는 가입되어 있지 않다</span></li>
+        <li><span class="chk">✓</span><span>1년 이상 계속 근무해왔지만 퇴직금을 받은 적이 없다</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="why">
+    <div class="wrap">
+      <div class="why-card"><div class="n">01</div><h4>계약서 명칭은 중요하지 않습니다</h4><p>"위탁계약", "용역계약"이라는 이름이더라도 실제 근무 실태가 근로자성 판단 기준입니다.</p></div>
+      <div class="why-card"><div class="n">02</div><h4>같은 사업 참여자와 함께</h4><p>같은 사업, 같은 지자체에서 함께 일한 동료들과 같이 조사하면 입증이 훨씬 수월해집니다.</p></div>
+      <div class="why-card"><div class="n">03</div><h4>퇴직금 청구권도 시효가 있습니다</h4><p>퇴직 후 3년이 지나면 청구권이 소멸됩니다. 재직 중이거나 퇴직한 지 오래되지 않았다면 지금 확인이 필요합니다.</p></div>
+    </div>
+  </section>
+
+  <section class="urgency">
+    <div class="wrap">
+      <h3 class="serif">시간이 지날수록<br><b>청구할 수 있는 권리가 줄어듭니다.</b></h3>
+      <p>퇴직일로부터 3년이 지나면 퇴직금 청구권 자체가 소멸됩니다. 재직 중인 경우 지금 실태를 확인해두는 것이 가장 유리합니다.</p>
+    </div>
+  </section>
+
+  <section class="form-section">
+    <div class="wrap">
+      <div class="form-head">
+        <span class="label">FREE SURVEY</span>
+        <h2 class="serif">실태조사 참여하기</h2>
+        <p>3~5분이면 작성할 수 있습니다. 작성해주신 내용은 근로자성 검토 목적으로만 사용됩니다.</p>
+      </div>
+      <div class="form-frame-box">
+        <p>아래 버튼을 누르면 실태조사 양식이 새 창으로 열립니다.<br>근무 형태, 지휘·감독 여부, 퇴직금 수령 여부 등을 확인하는 항목으로 구성되어 있습니다.</p>
+        <a class="btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSd-8QLDp6Q7O-h_cf7mXuqwvjvKlJoUrNQLXxdDSMc15iCC1Q/viewform" target="_blank" rel="noopener">실태조사 참여하기 ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    노무법인 이언 · 서울 영등포구 선유로27, 215호 · 070-8823-1398 — 조사 내용은 근로자성 검토 목적 외 다른 용도로 사용되지 않습니다.
+  </footer>
+</div>
+
+<script>
+  function showView(id){
+    document.querySelectorAll('.view').forEach(function(v){ v.classList.remove('active'); });
+    document.getElementById('view-' + id).classList.add('active');
+    document.getElementById('backBtn').style.display = (id === 'home') ? 'none' : 'flex';
+    window.scrollTo({top:0, behavior:'instant'});
+  }
+</script>
+
+</body>
+</html>
