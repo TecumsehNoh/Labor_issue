@@ -43,7 +43,7 @@
   .home-hero p{ font-size:16px; color:var(--slate); max-width:54ch; margin:0 auto; }
 
   .issue-grid{ padding:10px 24px 100px; }
-  .issue-grid .wrap{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  .issue-grid .wrap{ display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:24px; }
   .issue-card{
     background:var(--card); border:1px solid var(--ink); padding:36px 32px;
     text-align:left; cursor:pointer; transition:transform .15s ease;
@@ -159,6 +159,12 @@
         <span class="tag">Worker Status Survey</span>
         <h3>지자체 사업에 참여 중인데<br>퇴직금을 받은 적이 없어요</h3>
         <p>위탁·용역·프리랜서 형태라도 실질적으로 근로자성이 인정되면 퇴직금을 청구할 수 있습니다.</p>
+        <span class="go">자세히 보기 →</span>
+      </div>
+      <div class="issue-card" onclick="showView('manager')">
+        <span class="tag">Store Manager Case</span>
+        <h3>점장으로 근무했는데<br>회사가 어렵다며 퇴직금을 안 줘요</h3>
+        <p>직함이 '점장'이라도 실질적으로 지휘·감독을 받았다면 근로자로 인정되어 퇴직금을 받을 수 있습니다. 경영난은 지급 거부 사유가 되지 않습니다.</p>
         <span class="go">자세히 보기 →</span>
       </div>
     </div>
@@ -288,6 +294,64 @@
 
   <footer>
     노무법인 이언 · 서울 영등포구 선유로27, 215호 · 070-8823-1398 — 조사 내용은 근로자성 검토 목적 외 다른 용도로 사용되지 않습니다.
+  </footer>
+</div>
+
+<!-- ===================== STORE MANAGER CASE ===================== -->
+<div class="view" id="view-manager">
+  <section class="hero">
+    <div class="wrap">
+      <span class="label">CASE INTAKE — 상담 접수</span>
+      <h1>"회사가 어렵다"는 이유로,<br><span class="em">점장님의 퇴직금까지 미뤄질 수는 없습니다.</span></h1>
+      <p class="lead">직함이 '점장', '매니저', '책임자'였더라도 실질적으로 지휘·감독을 받으며 근무했다면 근로기준법상 근로자입니다. 회사의 경영난은 퇴직금 지급 의무와 무관합니다.</p>
+    </div>
+  </section>
+
+  <section class="eligibility">
+    <div class="elig-box check">
+      <h3 class="serif">이런 경우에 해당하시나요?</h3>
+      <ul class="elig-list">
+        <li><span class="chk">✓</span><span>본사나 점주로부터 업무 지시·보고 체계에 따라 일했다</span></li>
+        <li><span class="chk">✓</span><span>출퇴근 시간과 근무 장소가 정해져 있었다</span></li>
+        <li><span class="chk">✓</span><span>직원 채용·해고나 가격 결정 등 경영상 핵심 권한은 없었고, 매월 고정 급여를 받았다</span></li>
+        <li><span class="chk">✓</span><span>매장 운영에 직접 투자하거나 손익을 책임지는 구조가 아니었다</span></li>
+        <li><span class="chk">✓</span><span>사업자등록 없이 개인 자격으로 근무했다</span></li>
+        <li><span class="chk">✓</span><span>퇴사 시 "회사가 어렵다", "나중에 정산해주겠다"는 말만 듣고 퇴직금을 받지 못했다</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="why">
+    <div class="wrap">
+      <div class="why-card"><div class="n">01</div><h4>직함은 근로자성 판단 기준이 아닙니다</h4><p>'점장'이라는 명칭과 무관하게, 실질적인 지휘·감독 관계가 있었는지로 근로자 여부를 판단합니다.</p></div>
+      <div class="why-card"><div class="n">02</div><h4>경영난은 지급 거부 사유가 아닙니다</h4><p>회사 사정이 어렵다는 이유로 퇴직금 지급이 면제되지 않습니다. 오히려 회사가 도산 위기라면 더 서둘러야 합니다.</p></div>
+      <div class="why-card"><div class="n">03</div><h4>체당금 제도도 검토할 수 있습니다</h4><p>회사가 실제로 도산·폐업 상태라면, 국가가 대신 지급하는 체당금(임금채권보장제도)을 통해 받을 수 있는 경우도 있습니다.</p></div>
+    </div>
+  </section>
+
+  <section class="urgency">
+    <div class="wrap">
+      <h3 class="serif">회사가 어려울수록,<br><b>퇴직금을 받을 수 있는 시간이 줄어듭니다.</b></h3>
+      <p>퇴직금 청구권은 퇴직일로부터 3년이면 소멸됩니다. 회사가 폐업하거나 재산을 처분하기 전에 확인하고 대응하는 것이 중요합니다.</p>
+    </div>
+  </section>
+
+  <section class="form-section">
+    <div class="wrap">
+      <div class="form-head">
+        <span class="label">FREE CONSULTATION</span>
+        <h2 class="serif">무료 상담 신청</h2>
+        <p>근무 형태와 퇴직 경위를 알려주시면 근로자성 인정 가능성과 대응 방법을 검토해드립니다.</p>
+      </div>
+      <div class="form-frame-box">
+        <p>아래 버튼을 누르면 상담 신청 양식이 새 창으로 열립니다.</p>
+        <a class="btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSf8jMTMy2OCuUfa1512PgkB9cBABVJrPzWKvBFGkY2lfz2qiw/viewform" target="_blank" rel="noopener">상담 신청 양식 작성하기 ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    노무법인 이언 · 서울 영등포구 선유로27, 215호 · 070-8823-1398 — 신청 내용은 상담 목적 외 다른 용도로 사용되지 않습니다.
   </footer>
 </div>
 
